@@ -10,9 +10,10 @@ def test_convert_kernel(func):
             The function to to be tested. """
     import numpy as np
     from itertools import product
+    from pathlib import Path
     dims = [4, 5]
     modes = ['tf', 'th']
-    with np.load("./kernels.npz") as f:
+    with np.load(Path(".") / "kernels.npz") as f:
         for dim, mode in product(dims, modes):
             k = f["{mode}{dim}d".format(mode=mode, dim=dim)]
             kf = f["{mode}{dim}df".format(mode=mode, dim=dim)]
